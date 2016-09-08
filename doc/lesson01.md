@@ -12,7 +12,7 @@
 
 > Изменения в проекте: переименовал классы `UserMeal*` в более красивые `Meal*`
 
-### ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 2. <a href="">Работа с git в IDEA. Реализация через цикл.</a>
+### ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 2. <a href="https://drive.google.com/open?id=0B9Ye2auQ_NsFdTJIQUExajZWWkE">Работа с git в IDEA. Реализация через цикл.</a>
 - **Apply 1-2-HW0-cycle.patch**
 
 > Изменения в проекте: `map.getOrDefault` земенил на `map.merge`, `for` заменены на `forEach`
