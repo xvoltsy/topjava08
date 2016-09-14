@@ -66,6 +66,9 @@
 > Сервлет добавляется в следующем патче, те в web.xml он будет подчеркиваться красным.
 
 - **Apply 1-4-add-servlet-api.patch**
+
+> Если зависимость servlet-api не подтянулсаь, <a href="https://github.com/JavaOPs/topjava/wiki/IDEA#%D0%9E%D0%B1%D0%BD%D0%BE%D0%B2%D0%B8%D1%82%D1%8C-%D0%B7%D0%B0%D0%B2%D0%B8%D1%81%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D0%B8-%D0%B2-maven-%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B5">обновите maven проект</a>.
+
 - **Apply 1-5-forward-to-redirect.patch**
 
 > <a href="http://winreview.ru/kak-uznat-kakaya-programma-ispolzuet-tot-ili-inoj-port-v-windows-7/">Проверка, кто занял порт в Windows (в случае проблем с запуском и дебагом на портах 8080, 8000)</a>
