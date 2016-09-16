@@ -6,9 +6,11 @@
 
 ### ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 1. <a href="https://drive.google.com/open?id=0B9Ye2auQ_NsFXzByNVF3VV9zM1k">отображения списка еды в JSP</a>
 - **Apply 2-1-HW1.patch**
+
 > Изменения в `MealsUtil`:
   - Сделал константу `List<Meal> MEALS`
   - Сделал вспомогательный метод `getWithExceeded`
+
 > Форматирование даты сделал на основе <a href="http://stackoverflow.com/questions/35606551/jstl-localdatetime-format#35607225">JSTL LocalDateTime format</a>
 
 - <a href="http://design-pattern.ru/patterns/mvc.html">MVC - Model View Controller</a>
