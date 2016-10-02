@@ -1,7 +1,10 @@
 package ru.javawebinar.topjava.util;
 
+import org.springframework.util.StringUtils;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -9,7 +12,6 @@ import java.time.format.DateTimeFormatter;
  * 07.01.2015.
  */
 public class TimeUtil {
-    public static final DateTimeFormatter DATE_TME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public static final LocalDate MIN_DATE = LocalDate.of(1, 1, 1);
@@ -18,7 +20,13 @@ public class TimeUtil {
         return value.compareTo(start) >= 0 && value.compareTo(end) <= 0;
     }
 
+    public static LocalDate parseLocalDate(String str) {
+        return StringUtils.isEmpty(str) ? null : LocalDate.parse(str);
+    }
+
+    public static LocalTime parseLocalTime(String str) {
+        return StringUtils.isEmpty(str) ? null : LocalTime.parse(str);}
     public static String toString(LocalDateTime ldt) {
-        return ldt == null ? "" : ldt.format(DATE_TME_FORMATTER);
+        return ldt == null ? "" : ldt.format(DATE_TIME_FORMATTER);
     }
 }
