@@ -25,7 +25,9 @@ public class TimeUtil {
     }
 
     public static LocalTime parseLocalTime(String str) {
-        return StringUtils.isEmpty(str) ? null : LocalTime.parse(str);}
+        return StringUtils.isEmpty(str) ? null : LocalTime.parse(str);
+    }
+
     public static String toString(LocalDateTime ldt) {
         return ldt == null ? "" : ldt.format(DATE_TIME_FORMATTER);
     }
