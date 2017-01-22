@@ -34,4 +34,12 @@ public class TimeUtil {
     public static String toString(LocalDateTime ldt) {
         return ldt == null ? "" : ldt.format(DATE_TIME_FORMATTER);
     }
+
+    public static LocalDateTime parseLocalDateTime(String str) {
+        return parseLocalDateTime(str, DATE_TIME_FORMATTER);
+    }
+
+    public static LocalDateTime parseLocalDateTime(String str, DateTimeFormatter formatter) {
+        return StringUtils.isEmpty(str) ? LocalDateTime.now() : LocalDateTime.parse(str, formatter);
+    }
 }
