@@ -8,11 +8,14 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.service.MealService;
 import ru.javawebinar.topjava.to.MealWithExceed;
 import ru.javawebinar.topjava.util.MealsUtil;
-import ru.javawebinar.topjava.util.TimeUtil;
+//import ru.javawebinar.topjava.util.TimeUtil;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+
+//import static ru.javawebinar.topjava.util.ValidationUtil.checkIdConsistent;
+//import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
 
 /**
  * GKislin
@@ -43,14 +46,14 @@ public abstract class AbstractMealController {
     }
 
     public void update(Meal meal, int id) {
-        meal.setId(id);
+//        checkIdConsistent(meal, id);
         int userId = AuthorizedUser.id();
         LOG.info("update {} for User {}", meal, userId);
         service.update(meal, userId);
     }
 
     public Meal create(Meal meal) {
-        meal.setId(null);
+//        checkNew(meal);
         int userId = AuthorizedUser.id();
         LOG.info("create {} for User {}", meal, userId);
         return service.save(meal, userId);
@@ -59,10 +62,14 @@ public abstract class AbstractMealController {
     public List<MealWithExceed> getBetween(LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime) {
         int userId = AuthorizedUser.id();
         LOG.info("getBetween dates {} - {} for time {} - {} for User {}", startDate, endDate, startTime, endTime, userId);
-        return MealsUtil.getFilteredWithExceeded(
-                service.getBetweenDates(
-                        startDate != null ? startDate : TimeUtil.MIN_DATE, endDate != null ? endDate : TimeUtil.MAX_DATE, userId
-                ), startTime != null ? startTime : LocalTime.MIN, endTime != null ? endTime : LocalTime.MAX, AuthorizedUser.getCaloriesPerDay()
-        );
+
+        return null;
+//        return MealsUtil.getFilteredWithExceeded(
+//                service.getBetweenDates(
+//                        startDate != null ? startDate : TimeUtil.MIN_DATE, endDate != null ? endDate : TimeUtil.MAX_DATE, userId
+//                        startDate != null ? startDate : DateTimeUtil.MIN_DATE,
+//                        endDate != null ? endDate : DateTimeUtil.MAX_DATE, userId),
+//                startTime != null ? startTime : LocalTime.MIN,
+//                endTime != null ? endTime : LocalTime.MAX, AuthorizedUser.getCaloriesPerDay());
     }
 }
