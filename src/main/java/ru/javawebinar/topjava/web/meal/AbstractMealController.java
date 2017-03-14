@@ -14,8 +14,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-//import static ru.javawebinar.topjava.util.ValidationUtil.checkIdConsistent;
-//import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
+import static ru.javawebinar.topjava.util.ValidationUtil.checkIdConsistent;
+import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
 
 /**
  * GKislin
@@ -46,14 +46,14 @@ public abstract class AbstractMealController {
     }
 
     public void update(Meal meal, int id) {
-//        checkIdConsistent(meal, id);
+        checkIdConsistent(meal, id);
         int userId = AuthorizedUser.id();
         LOG.info("update {} for User {}", meal, userId);
         service.update(meal, userId);
     }
 
     public Meal create(Meal meal) {
-//        checkNew(meal);
+        checkNew(meal);
         int userId = AuthorizedUser.id();
         LOG.info("create {} for User {}", meal, userId);
         return service.save(meal, userId);
