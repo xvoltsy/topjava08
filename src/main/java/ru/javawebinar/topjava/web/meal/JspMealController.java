@@ -5,7 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import ru.javawebinar.topjava.model.Meal;
-import ru.javawebinar.topjava.util.TimeUtil;
+import ru.javawebinar.topjava.util.DateTimeUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
@@ -58,10 +58,10 @@ public class JspMealController extends AbstractMealController {
 
     @RequestMapping(value = "/filter", method = RequestMethod.POST)
     public String getBetween(HttpServletRequest request, Model model) {
-        LocalDate startDate = TimeUtil.parseLocalDate(resetParam("startDate", request));
-        LocalDate endDate = TimeUtil.parseLocalDate(resetParam("endDate", request));
-        LocalTime startTime = TimeUtil.parseLocalTime(resetParam("startTime", request));
-        LocalTime endTime = TimeUtil.parseLocalTime(resetParam("endTime", request));
+        LocalDate startDate = DateTimeUtil.parseLocalDate(resetParam("startDate", request));
+        LocalDate endDate = DateTimeUtil.parseLocalDate(resetParam("endDate", request));
+        LocalTime startTime = DateTimeUtil.parseLocalTime(resetParam("startTime", request));
+        LocalTime endTime = DateTimeUtil.parseLocalTime(resetParam("endTime", request));
         model.addAttribute("meals", super.getBetween(startDate, startTime, endDate, endTime));
         return "meals";
     }
