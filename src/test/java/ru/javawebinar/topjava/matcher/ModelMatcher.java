@@ -43,6 +43,14 @@ public class ModelMatcher<T> {
         this.comparator = comparator;
     }
 
+    public static <T> ModelMatcher<T> of(Class<T> entityClass) {
+        return new ModelMatcher<>(entityClass);
+    }
+
+    public static <T> ModelMatcher<T> of(Class<T> entityClass, Comparator<T> comparator) {
+        return new ModelMatcher<>(entityClass, comparator);
+    }
+
     private class Wrapper {
         private T entity;
 
