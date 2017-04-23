@@ -19,6 +19,12 @@ public class MealAjaxController extends AbstractMealController {
     }
 
     @Override
+    @GetMapping("/{id}")
+    public Meal get(@PathVariable("id") int id) {
+        return super.get(id);
+    }
+
+    @Override
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") int id) {
         super.delete(id);
@@ -26,10 +32,9 @@ public class MealAjaxController extends AbstractMealController {
 
     @PostMapping
     public void crateOrUpdate(@PathVariable("id") Integer id,
-                              @PathVariable("dateTime") LocalDateTime dateTime,
                               @PathVariable("description") String description,
                               @PathVariable("calories") Integer calories) {
-        Meal meal = new Meal(id, dateTime, description, calories);
+        Meal meal = new Meal(id, LocalDateTime.now(), description, calories);
         if (meal.isNew()) {
             super.create(meal);
         } else {

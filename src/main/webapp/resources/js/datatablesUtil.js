@@ -22,6 +22,7 @@ function deleteRow(id) {
     $.ajax({
         url: ajaxUrl + id,
         type: 'DELETE',
+        dataType: json,
         success: function () {
             updateTable();
             successNoty('Deleted');
@@ -44,6 +45,7 @@ function save() {
     $.ajax({
         type: "POST",
         url: ajaxUrl,
+        dataType: json,
         data: form.serialize(),
         success: function () {
             $('#editRow').modal('hide');
