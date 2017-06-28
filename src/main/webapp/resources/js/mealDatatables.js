@@ -1,4 +1,4 @@
-var ajaxUrl = '/ajax/profile/meals/';
+var ajaxUrl = 'ajax/profile/meals/';
 var datatableApi;
 
 $(function () {

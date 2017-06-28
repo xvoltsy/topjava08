@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("/ajax/profile/meals")
+@RequestMapping("/ajax/profile/meals/")
 public class MealAjaxController extends AbstractMealController {
 
     @Override
@@ -31,9 +31,9 @@ public class MealAjaxController extends AbstractMealController {
     }
 
     @PostMapping
-    public void crateOrUpdate(@PathVariable("id") Integer id,
-                              @PathVariable("description") String description,
-                              @PathVariable("calories") Integer calories) {
+    public void crateOrUpdate(@RequestParam("id") Integer id,
+                              @RequestParam("description") String description,
+                              @RequestParam("calories") Integer calories) {
         Meal meal = new Meal(id, LocalDateTime.now(), description, calories);
         if (meal.isNew()) {
             super.create(meal);
