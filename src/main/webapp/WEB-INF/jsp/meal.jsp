@@ -19,10 +19,18 @@
                     <input type="text" hidden="hidden" id="id" name="id">
 
                     <div class="form-group">
+                        <label for="datetime" class="control-label col-xs-3"><spring:message code="meals.dateTime"/>:</label>
+
+                        <div class="col-xs-9">
+                            <input type="datetime-local" class="form-control" id="datetime" name="dateTime"  placeholder="<spring:message code="meals.description"/>">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="description" class="control-label col-xs-3"><spring:message code="meals.description"/>:</label>
 
                         <div class="col-xs-9">
-                            <input type="email" class="form-control" id="description" name="description"  placeholder="<spring:message code="meals.description"/>">
+                            <input type="text" class="form-control" id="description" name="description"  placeholder="<spring:message code="meals.description"/>">
                         </div>
                     </div>
 
