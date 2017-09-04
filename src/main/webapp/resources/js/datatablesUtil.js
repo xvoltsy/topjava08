@@ -8,9 +8,49 @@ function makeEditable() {
         return false;
     });
 
+    $('#filterForm').submit(function () {
+        filter();
+        return false;
+    });
+
+    $('#input:checkbox').change(function() {
+        // this will contain a reference to the checkbox
+        if (this.checked) {
+            // the checkbox is now checked
+        } else {
+            // the checkbox is now no longer checked
+        }
+    });
+
+    $(':checkbox').change(function() {
+
+        // do stuff here. It will fire on any checkbox change
+
+    });
+
+    $("#clearFilter").click(function () {
+        $('#startDate').val("");
+        $('#endDate').val("");
+        $('#startTime').val("");
+        $('#endTime').val("");
+    });
+
     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
         failNoty(event, jqXHR, options, jsExc);
     });
+}
+
+function filter() {
+    var form = $('#filterForm');
+    $.ajax({
+        url : ajaxUrl + "filter",
+        type : 'GET',
+        data : form.serialize(),
+        success: function () {
+            updateTable();
+            successNoty('Filtered');
+        }
+    })
 }
 
 function add() {
@@ -25,6 +65,17 @@ function deleteRow(id) {
         success: function () {
             updateTable();
             successNoty('Deleted');
+        }
+    });
+}
+
+function enableUser(id) {
+    $.ajax( {
+        type: 'POST',
+        url: ajaxUrl + id,
+        data: {checkbox: $('#id[name=checkbox]').val()},
+        success: function() {
+            successNoty('Check');
         }
     });
 }

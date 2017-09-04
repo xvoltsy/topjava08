@@ -7,6 +7,7 @@ import ru.javawebinar.topjava.AuthorizedUser;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.service.MealService;
 import ru.javawebinar.topjava.to.MealWithExceed;
+import ru.javawebinar.topjava.util.DateTimeUtil;
 import ru.javawebinar.topjava.util.MealsUtil;
 //import ru.javawebinar.topjava.util.DateTimeUtil;
 
@@ -63,13 +64,10 @@ public abstract class AbstractMealController {
         int userId = AuthorizedUser.id();
         LOG.info("getBetween dates {} - {} for time {} - {} for User {}", startDate, endDate, startTime, endTime, userId);
 
-        return null;
-//        return MealsUtil.getFilteredWithExceeded(
-//                service.getBetweenDates(
-//                        startDate != null ? startDate : DateTimeUtil.MIN_DATE, endDate != null ? endDate : DateTimeUtil.MAX_DATE, userId
-//                        startDate != null ? startDate : DateTimeUtil.MIN_DATE,
-//                        endDate != null ? endDate : DateTimeUtil.MAX_DATE, userId),
-//                startTime != null ? startTime : LocalTime.MIN,
-//                endTime != null ? endTime : LocalTime.MAX, AuthorizedUser.getCaloriesPerDay());
+//        return null;
+        return MealsUtil.getFilteredWithExceeded(
+                service.getBetweenDates(startDate != null ? startDate : DateTimeUtil.MIN_DATE, endDate != null ? endDate : DateTimeUtil.MAX_DATE, userId),
+                startTime != null ? startTime : LocalTime.MIN, endTime != null ? endTime : LocalTime.MAX,
+                AuthorizedUser.getCaloriesPerDay());
     }
 }
