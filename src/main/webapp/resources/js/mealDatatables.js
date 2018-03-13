@@ -38,7 +38,7 @@ $(function () {
         "info": true,
         "columns": [
             {
-                "data": "dateTime"
+                "data": "dateTimeUI"
             },
             {
                 "data": "description"
