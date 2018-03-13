@@ -11,7 +11,9 @@ import ru.javawebinar.topjava.View;
 import ru.javawebinar.topjava.util.DateTimeUtil;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.Default;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -39,21 +41,23 @@ public class Meal extends BaseEntity implements HasId {
     public static final String GET_BETWEEN = "Meal.getBetween";
 
     @Column(name = "date_time", nullable = false)
-    @NotNull
+    @NotNull(groups = {View.ValidatedUI.class, Default.class})
     @DateTimeFormat(pattern = DateTimeUtil.DATE_TIME_PATTERN)
     @JsonView(View.JsonREST.class)
     private LocalDateTime dateTime;
 
     @Column(name = "description", nullable = false)
-    @NotEmpty
+    @NotBlank(groups = {View.ValidatedUI.class, Default.class})
     private String description;
 
     @Column(name = "calories", nullable = false)
-    @Range(min = 10, max = 5000)
+    @Range(min = 10, max = 5000, groups = {View.ValidatedUI.class, Default.class})
+    @NotNull(groups = {View.ValidatedUI.class, Default.class})
     protected Integer calories;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @NotNull
     private User user;
 
     public Meal() {
