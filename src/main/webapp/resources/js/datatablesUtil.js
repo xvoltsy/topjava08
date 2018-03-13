@@ -80,8 +80,9 @@ function successNoty(key) {
 
 function failNoty(jqXHR) {
     closeNoty();
+    var responseJSON = JSON.parse(jqXHR.responseText);
     failedNote = noty({
-        text: "<span class='glyphicon glyphicon-exclamation-sign'></span> &nbsp;" + i18n["common.errorStatus"] + ": " + jqXHR.status + (jqXHR.responseJSON ? "<br>" + jqXHR.responseJSON : ""),
+        text: "<span class='glyphicon glyphicon-exclamation-sign'></span> &nbsp;" + i18n["common.errorStatus"] + ": " + jqXHR.status + (responseJSON ? "<br>" + responseJSON : ""),
         type: 'error',
         layout: 'bottomRight'
     });
