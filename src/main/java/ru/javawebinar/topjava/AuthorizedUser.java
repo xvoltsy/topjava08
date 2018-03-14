@@ -53,6 +53,10 @@ public class AuthorizedUser extends org.springframework.security.core.userdetail
         return DEFAULT_CALORIES_PER_DAY;
     }
 
+    public UserTo getUserTo() {
+        return userTo;
+    }
+
     @Override
     public String toString() {
         return userTo.toString();
