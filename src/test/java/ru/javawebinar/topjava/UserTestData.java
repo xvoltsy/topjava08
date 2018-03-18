@@ -1,10 +1,12 @@
 package ru.javawebinar.topjava;
 
 
+import org.springframework.test.web.servlet.ResultMatcher;
 import ru.javawebinar.topjava.matcher.ModelMatcher;
 import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 import static ru.javawebinar.topjava.model.BaseEntity.START_SEQ;
@@ -31,4 +33,24 @@ public class UserTestData {
                             && Objects.equals(expected.getRoles(), actual.getRoles())
                     )
     );
+
+//    public static void assertMatch(User actual, User expected) {
+//        assertThat(actual).isEqualToIgnoringGivenFields(expected, "registered", "meals", "password");
+//    }
+//
+//    public static void assertMatch(Iterable<User> actual, User... expected) {
+//
+//    }
+//
+//    public static void assertMatch(Iterable<User> actual, Iterable<User> expected) {
+//        assertThat(actual).usingElementComparatorIgnoringFields("registered", "meals", "password").isEqualTo(expected);
+//    }
+//
+//    public static ResultMatcher contentJson(User... expected) {
+//        return content().json(writeIgnoreProps(Arrays.asList(expected), "registered", "password"));
+//    }
+//
+//    public static ResultMatcher contentJson(User expected) {
+//        return content().json(writeIgnoreProps(expected, "registered", "password"));
+//    }
 }
