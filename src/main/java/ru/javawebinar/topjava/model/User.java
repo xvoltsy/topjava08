@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -42,12 +43,14 @@ public class User extends NamedEntity {
     @Column(name = "password", nullable = false)
     @NotEmpty
     @Length(min = 5, max = 100)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "enabled", nullable = false)
     private boolean enabled = true;
 
     @Column(name = "registered", columnDefinition = "timestamp default now()")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Date registered = new Date();
 
     @Enumerated(EnumType.STRING)

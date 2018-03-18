@@ -5,6 +5,7 @@ import org.springframework.test.web.servlet.ResultMatcher;
 import ru.javawebinar.topjava.matcher.ModelMatcher;
 import ru.javawebinar.topjava.model.Role;
 import ru.javawebinar.topjava.model.User;
+import ru.javawebinar.topjava.web.json.JsonUtil;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -33,6 +34,10 @@ public class UserTestData {
                             && Objects.equals(expected.getRoles(), actual.getRoles())
                     )
     );
+
+    public static String jsonWithPassword(User user, String passw) {
+        return JsonUtil.writeAdditionProps(user, "password", passw);
+    }
 
 //    public static void assertMatch(User actual, User expected) {
 //        assertThat(actual).isEqualToIgnoringGivenFields(expected, "registered", "meals", "password");
