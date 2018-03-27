@@ -41,4 +41,8 @@ public class MealTestData {
     public static Meal getUpdated() {
         return new Meal(MEAL1_ID, MEAL1.getDateTime(), "Обновленный завтрак", 200);
     }
+
+    public static Meal getInvalidUpdated() {
+        return new Meal(MEAL1_ID, MEAL1.getDateTime(), "Обновлённый завтрак", 5);
+    }
 }

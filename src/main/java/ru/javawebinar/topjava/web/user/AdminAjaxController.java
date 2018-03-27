@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.web.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,10 @@ import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.to.UserTo;
 import ru.javawebinar.topjava.util.UserUtil;
 import ru.javawebinar.topjava.util.ValidationUtil;
+import ru.javawebinar.topjava.util.exception.NotFoundException;
+import ru.javawebinar.topjava.web.ExceptionInfoHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -19,6 +23,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/ajax/admin/users")
 public class AdminAjaxController extends AbstractUserController {
+
+    @Autowired
+    private ExceptionInfoHandler exceptionInfoHandler;
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -38,18 +45,16 @@ public class AdminAjaxController extends AbstractUserController {
         super.delete(id);
     }
 
-    @PostMapping
-    public ResponseEntity<String> createOrUpdate(@Valid UserTo userTo, BindingResult result) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createOrUpdate(@Valid @RequestBody UserTo userTo, BindingResult result, HttpServletRequest req) {
         if (result.hasErrors()) {
-            // TODO change to exception handler
-            return ValidationUtil.getErrorResponse(result);
+            exceptionInfoHandler.handleError(req, new NotFoundException(userTo.getName() + " not found!"));
         }
         if (userTo.isNew()) {
             super.create(UserUtil.createNewFromTo(userTo));
         } else {
             super.update(userTo, userTo.getId());
         }
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override

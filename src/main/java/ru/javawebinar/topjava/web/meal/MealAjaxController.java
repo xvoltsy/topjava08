@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava.web.meal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +9,10 @@ import org.springframework.web.bind.annotation.*;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.to.MealWithExceed;
 import ru.javawebinar.topjava.util.ValidationUtil;
+import ru.javawebinar.topjava.util.exception.NotFoundException;
+import ru.javawebinar.topjava.web.ExceptionInfoHandler;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,6 +21,9 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/ajax/profile/meals")
 public class MealAjaxController extends AbstractMealController {
+
+    @Autowired
+    private ExceptionInfoHandler exceptionInfoHandler;
 
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,18 +43,16 @@ public class MealAjaxController extends AbstractMealController {
         super.delete(id);
     }
 
-    @PostMapping
-    public ResponseEntity<String> createOrUpdate(@Valid Meal meal, BindingResult result) {
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createOrUpdate(@Valid @RequestBody Meal meal, BindingResult result, HttpServletRequest req) {
         if (result.hasErrors()) {
-            // TODO change to exception handler
-            return ValidationUtil.getErrorResponse(result);
+            exceptionInfoHandler.handleError(req, new NotFoundException(meal + " not found!"));
         }
         if (meal.isNew()) {
             super.create(meal);
         } else {
             super.update(meal, meal.getId());
         }
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @Override
