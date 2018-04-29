@@ -46,10 +46,10 @@ public class AdminAjaxController extends AbstractUserController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createOrUpdate(@Valid @RequestBody UserTo userTo, BindingResult result, HttpServletRequest req) {
-        if (result.hasErrors()) {
-            exceptionInfoHandler.handleError(req, new NotFoundException(userTo.getName() + " not found!"));
-        }
+    public void createOrUpdate(@Valid @RequestBody UserTo userTo) {
+//        if (result.hasErrors()) {
+//            exceptionInfoHandler.handleError(req, new NotFoundException(userTo.getName() + " not found!"));
+//        }
         if (userTo.isNew()) {
             super.create(UserUtil.createNewFromTo(userTo));
         } else {

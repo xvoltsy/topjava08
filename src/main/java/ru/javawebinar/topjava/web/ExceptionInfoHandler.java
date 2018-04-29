@@ -43,9 +43,11 @@ public class ExceptionInfoHandler {
         return logAndGetErrorInfo(req, e, true, ErrorType.APP_ERROR);
     }
 
+    @ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException error ) {
-        return ValidationUtil.getErrorResponse(error.getBindingResult());
+    public ErrorInfo handleMethodArgumentNotValidException(HttpServletRequest req, MethodArgumentNotValidException e) {
+//        return ValidationUtil.getErrorResponse(e.getBindingResult());
+        return logAndGetErrorInfo(req, e, true, ErrorType.DATA_NOT_FOUND);
     }
 
     private static ErrorInfo logAndGetErrorInfo(HttpServletRequest req, Exception e, boolean logException, ErrorType errorType) {

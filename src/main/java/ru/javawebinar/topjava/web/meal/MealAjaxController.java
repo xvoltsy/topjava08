@@ -44,10 +44,10 @@ public class MealAjaxController extends AbstractMealController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createOrUpdate(@Valid @RequestBody Meal meal, BindingResult result, HttpServletRequest req) {
-        if (result.hasErrors()) {
-            exceptionInfoHandler.handleError(req, new NotFoundException(meal + " not found!"));
-        }
+    public void createOrUpdate(@Valid @RequestBody Meal meal) {
+//        if (result.hasErrors()) {
+//            exceptionInfoHandler.handleError(req, new NotFoundException(meal + " not found!"));
+//        }
         if (meal.isNew()) {
             super.create(meal);
         } else {
