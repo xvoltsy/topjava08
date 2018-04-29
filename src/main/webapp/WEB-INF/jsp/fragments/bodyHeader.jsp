@@ -9,16 +9,16 @@
 
         <div class="collapse navbar-collapse">
             <form:form class="navbar-form navbar-right" action="logout" method="post">
-                <a class="btn btn-info" href="users"><spring:message code="users.title"/></a>
+                <%--<a class="btn btn-info" href="users"><spring:message code="users.title"/></a>--%>
 
-                <a class="btn btn-primary" href="logout">
-                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-                </a>
+                <%--<a class="btn btn-primary" href="logout">--%>
+                    <%--<span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>--%>
+                <%--</a>--%>
                 <sec:authorize access="isAuthenticated()">
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <a class="btn btn-info" href="users"><spring:message code="users.title"/></a>
                     </sec:authorize>
-                    <a class="btn btn-info" href="profile">${userTo.name} <spring:message code="app.profile"/></a>
+                    <%--<a class="btn btn-info" href="profile">${userTo.name} <spring:message code="app.profile"/></a>--%>
                     <button class="btn btn-primary" type="submit">
                         <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
                     </button>
