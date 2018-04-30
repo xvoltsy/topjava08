@@ -50,7 +50,7 @@ public class User extends NamedEntity {
     private boolean enabled = true;
 
     @Column(name = "registered", columnDefinition = "timestamp default now()")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Date registered = new Date();
 
     @Enumerated(EnumType.STRING)
