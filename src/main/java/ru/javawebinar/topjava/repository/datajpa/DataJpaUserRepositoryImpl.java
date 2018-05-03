@@ -30,7 +30,7 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
 
     @Override
     public User get(int id) {
-        return crudRepository.getOne(id);
+        return crudRepository.findOne(id);
     }
 
     @Override
