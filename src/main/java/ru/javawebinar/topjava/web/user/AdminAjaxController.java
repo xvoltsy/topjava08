@@ -1,10 +1,14 @@
 package ru.javawebinar.topjava.web.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.to.UserTo;
@@ -27,6 +31,9 @@ public class AdminAjaxController extends AbstractUserController {
     @Autowired
     private ExceptionInfoHandler exceptionInfoHandler;
 
+    @Autowired
+    private MessageSource messageSource;
+
     @Override
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {
@@ -45,16 +52,18 @@ public class AdminAjaxController extends AbstractUserController {
         super.delete(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createOrUpdate(@Valid @RequestBody UserTo userTo) {
-//        if (result.hasErrors()) {
-//            exceptionInfoHandler.handleError(req, new NotFoundException(userTo.getName() + " not found!"));
-//        }
-        if (userTo.isNew()) {
-            super.create(UserUtil.createNewFromTo(userTo));
-        } else {
-            super.update(userTo, userTo.getId());
+    @PostMapping
+    public void createOrUpdate(@Valid UserTo userTo) {
+        try {
+            if (userTo.isNew()) {
+                super.create(UserUtil.createNewFromTo(userTo));
+            } else {
+                super.update(userTo, userTo.getId());
+            }
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityViolationException(messageSource.getMessage(EXISTED_MAIL_MESSAGE_KEY, null, LocaleContextHolder.getLocale()));
         }
+
     }
 
     @Override
