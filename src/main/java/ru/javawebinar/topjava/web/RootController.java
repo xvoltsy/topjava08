@@ -15,7 +15,6 @@ import ru.javawebinar.topjava.util.UserUtil;
 import ru.javawebinar.topjava.web.user.AbstractUserController;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 /**
  * User: gkislin
@@ -69,7 +68,7 @@ public class RootController extends AbstractUserController {
                 return "redirect:meals";
             }
         } catch (DataIntegrityViolationException e) {
-            result.rejectValue("email", EXISTED_MAIL_MESSAGE_KEY);
+            result.rejectValue("email", EXISTED_MAIL_WARNING_MESSAGE);
             return "profile";
         }
     }
@@ -93,7 +92,7 @@ public class RootController extends AbstractUserController {
                 return "redirect:login?message=app.registered&username=" + userTo.getEmail();
             }
         } catch (DataIntegrityViolationException e) {
-            result.rejectValue("email", EXISTED_MAIL_MESSAGE_KEY);
+            result.rejectValue("email", EXISTED_MAIL_WARNING_MESSAGE);
             model.addAttribute("register", true);
             return "profile";
         }

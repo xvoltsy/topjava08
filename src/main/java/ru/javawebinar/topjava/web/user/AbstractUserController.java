@@ -19,7 +19,7 @@ import static ru.javawebinar.topjava.util.ValidationUtil.assureIdConsistent;
 public abstract class AbstractUserController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
-    public static final String EXISTED_MAIL_MESSAGE_KEY = "existed.user.email";
+    public static final String EXISTED_MAIL_WARNING_MESSAGE = "existed.user.email";
 
     @Autowired
     private UserService service;
