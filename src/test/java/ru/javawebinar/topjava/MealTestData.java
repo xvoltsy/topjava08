@@ -2,7 +2,9 @@ package ru.javawebinar.topjava;
 
 import ru.javawebinar.topjava.matcher.ModelMatcher;
 import ru.javawebinar.topjava.model.Meal;
+import ru.javawebinar.topjava.model.User;
 import ru.javawebinar.topjava.to.MealWithExceed;
+import ru.javawebinar.topjava.web.json.JsonUtil;
 
 import java.time.Month;
 import java.util.Arrays;
@@ -29,6 +31,7 @@ public class MealTestData {
     public static final Meal MEAL4 = new Meal(MEAL1_ID + 3, of(2015, Month.MAY, 31, 10, 0), "Завтрак", 500);
     public static final Meal MEAL5 = new Meal(MEAL1_ID + 4, of(2015, Month.MAY, 31, 13, 0), "Обед", 1000);
     public static final Meal MEAL6 = new Meal(MEAL1_ID + 5, of(2015, Month.MAY, 31, 20, 0), "Ужин", 510);
+    public static final Meal MEAL6_DUPLICATE_DATETIME = new Meal(null, of(2015, Month.MAY, 31, 20, 0), "Ужин", 510);
     public static final Meal ADMIN_MEAL1 = new Meal(ADMIN_MEAL_ID, of(2015, Month.JUNE, 1, 14, 0), "Админ ланч", 510);
     public static final Meal ADMIN_MEAL2 = new Meal(ADMIN_MEAL_ID + 1, of(2015, Month.JUNE, 1, 21, 0), "Админ ужин", 1500);
 
@@ -38,11 +41,20 @@ public class MealTestData {
         return new Meal(null, of(2015, Month.JUNE, 1, 18, 0), "Созданный ужин", 300);
     }
 
+    public static Meal getCreatedWithDuplicateDateTime() {
+        return new Meal(null, of(2015, Month.MAY, 31, 20, 0), "Созданный ужин", 400);
+    }
+
+
     public static Meal getUpdated() {
         return new Meal(MEAL1_ID, MEAL1.getDateTime(), "Обновленный завтрак", 200);
     }
 
     public static Meal getInvalidUpdated() {
         return new Meal(MEAL1_ID, MEAL1.getDateTime(), "Обновлённый завтрак", 5);
+    }
+
+    public static String jsonWithNewDescription(Meal meal, String description) {
+        return JsonUtil.writeAdditionProps(meal, "description", description);
     }
 }

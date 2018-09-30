@@ -20,8 +20,12 @@ public class UserTestData {
     public static final int USER_ID = START_SEQ;
     public static final int ADMIN_ID = START_SEQ + 1;
 
+    public static final int DUPLICATE_USER_ID = ADMIN_ID + 1;
+
     public static final User USER = new User(USER_ID, "User", "user@yandex.ru", "password", 2005, Role.ROLE_USER);
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@gmail.com", "admin", 1900, Role.ROLE_ADMIN, Role.ROLE_USER);
+
+    public static final User DUPLICATE_USER = new User(DUPLICATE_USER_ID, "Duplicate_User_Mail", "user@yandex.ru", "password", 2005, Role.ROLE_USER);
 
     public static final ModelMatcher<User> MATCHER = new ModelMatcher<>(User.class,
             (expected, actual) -> expected == actual ||

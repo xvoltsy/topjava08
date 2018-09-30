@@ -4,6 +4,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import ru.javawebinar.topjava.MealTestData;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.service.MealService;
 import ru.javawebinar.topjava.util.MealsUtil;
@@ -85,6 +88,16 @@ public class MealRestControllerTest extends AbstractControllerTest {
                 .content(JsonUtil.writeValue(invalidUpdated))
                 .with(userHttpBasic(USER)))
                 .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    @Transactional(propagation = Propagation.NEVER)
+    public void testDuplicateDateTime() throws Exception {
+        mockMvc.perform(post(REST_URL)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(JsonUtil.writeValue(getCreatedWithDuplicateDateTime()))
+                .with(userHttpBasic(USER)))
+                .andExpect(status().isConflict());
     }
 
     @Test
