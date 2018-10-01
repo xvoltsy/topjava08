@@ -300,6 +300,12 @@
             <version>${webjars-noty.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>font-awesome</artifactId>
+            <version>4.7.0</version>
+        </dependency>
+
         <!--JSON-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
