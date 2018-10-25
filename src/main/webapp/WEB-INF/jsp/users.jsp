@@ -5,8 +5,8 @@
 
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
-<script type="text/javascript" src="resources/js/datatablesUtil.js" defer></script>
-<script type="text/javascript" src="resources/js/userDatatables.js" defer></script>
+<script type="text/javascript" src="resources/js/topjava.common.js" defer></script>
+<script type="text/javascript" src="resources/js/topjava.users.js" defer></script>
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
