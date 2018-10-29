@@ -45,22 +45,22 @@ public class ProfileRestControllerTest extends AbstractControllerTest {
         MATCHER.assertCollectionEquals(Collections.singletonList(ADMIN), userService.getAll());
     }
 
-    @Test
-    void testRegister() throws Exception {
-        UserTo createdTo = new UserTo(null, "newName", "newemail@ya.ru", "newPassword", 1500);
-
-        ResultActions action = mockMvc.perform(post(REST_URL + "/register").contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(createdTo)))
-                .andDo(print())
-                .andExpect(status().isCreated());
-        User returned = readFromJson(action, User.class);
-
-        User created = UserUtil.createNewFromTo(createdTo);
-        created.setId(returned.getId());
-
-        assertMatch(returned, created);
-        assertMatch(userService.getByEmail("newemail@ya.ru"), created);
-    }
+//    @Test
+//    void testRegister() throws Exception {
+//        UserTo createdTo = new UserTo(null, "newName", "newemail@ya.ru", "newPassword", 1500);
+//
+//        ResultActions action = mockMvc.perform(post(REST_URL + "/register").contentType(MediaType.APPLICATION_JSON)
+//                .content(JsonUtil.writeValue(createdTo)))
+//                .andDo(print())
+//                .andExpect(status().isCreated());
+//        User returned = readFromJson(action, User.class);
+//
+//        User created = UserUtil.createNewFromTo(createdTo);
+//        created.setId(returned.getId());
+//
+//        MATCHER.assertEquals(returned, created);
+//        MATCHER.assertEquals(userService.getByEmail("newemail@ya.ru"), created);
+//    }
 
     @Test
     public void testUpdate() throws Exception {
