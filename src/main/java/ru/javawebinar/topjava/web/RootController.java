@@ -16,6 +16,8 @@ import ru.javawebinar.topjava.web.user.AbstractUserController;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import static ru.javawebinar.topjava.web.ExceptionInfoHandler.EXCEPTION_DUPLICATE_EMAIL;
+
 /**
  * User: gkislin
  * Date: 22.08.2014

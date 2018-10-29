@@ -8,6 +8,10 @@ notifications:
 language: java
 jdk: oraclejdk8
 
+#https://docs.travis-ci.com/user/environment-variables#Default-Environment-Variables
+env:
+  - TOPJAVA_ROOT=$TRAVIS_BUILD_DIR
+
 # https://docs.travis-ci.com/user/database-setup/#PostgreSQL
 before_script:
   - psql -c 'create database topjava' -U postgres
