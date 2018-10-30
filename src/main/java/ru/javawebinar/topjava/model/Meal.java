@@ -2,6 +2,7 @@ package ru.javawebinar.topjava.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 import ru.javawebinar.topjava.HasId;
 import ru.javawebinar.topjava.View;
@@ -42,6 +43,7 @@ public class Meal extends BaseEntity implements HasId {
 
     @Column(name = "description", nullable = false)
     @NotEmpty
+    @SafeHtml(groups = {View.Web.class})
     private String description;
 
     @Column(name = "calories", nullable = false)
