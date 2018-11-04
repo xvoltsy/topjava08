@@ -6,24 +6,35 @@
 <html>
 <jsp:include page="fragments/headTag.jsp"/>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" >
     <div class="container">
         <div class="navbar-header navbar-brand"><spring:message code="app.title"/></div>
-        <div class="navbar-collapse collapse">
-            <form:form class="navbar-form navbar-right" role="form" action="spring_security_check" method="post">
-                <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control" name="username">
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control" name="password">
-                </div>
-                <button type="submit" class="btn btn-success">
-                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>
-                </button>
-            </form:form>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="nav-item form-inline">
+                    <form:form class="navbar-form" id="login_form" action="spring_security_check" role="form" method="post">
+                        <input name="username" class="form-control" type="text" placeholder="Email">
+                        <input name="password" class="form-control" type="password" placeholder="Password">
+                        <button type="submit" class="btn btn-success">
+                            <span class="glyphicon glyphicon-log-in"></span>
+                        </button>
+                    </form:form>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown"><span id="dropdown_title">en</span><span class="caret"></span></a>
+                    <ul class="dropdown-menu" ID="divNewNotifications">
+                        <li><a href="${requestScope['javax.servlet.forward.request_uri']}?lang=en">en</a></li>
+                        <li><a href="${requestScope['javax.servlet.forward.request_uri']}?lang=ru">ru</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+
+        <%--</form:form>--%>
     </div>
-</div>
+</nav>
 
 <div class="jumbotron">
     <div class="container">
